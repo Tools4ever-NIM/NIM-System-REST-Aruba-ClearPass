@@ -1,0 +1,114 @@
+{
+    "schema": {
+        "options": {},
+        "crud_objects": {
+            "Endpoints": {
+                "operations": {
+                    "EndpointsList": {
+                        "method": "get",
+                        "call": {
+                            "path": "/api/endpoint?offset=0&limit=1000&calculate_count=true"
+                        },
+                        "processing_options": {
+                            "output_field": "_embedded.items"
+                        },
+                        "query_parameters": {
+                            "calculate_count": "true"
+                        }
+                    },
+                    "EndpointDelete": {
+                        "method": "delete",
+                        "call": {
+                            "mode": "normal",
+                            "path": "/api/endpoint/{id}"
+                        },
+                        "semantics": "delete",
+                        "resource_allowance_default": "prohibited",
+                        "resource_mandatory": [
+                            "id"
+                        ]
+                    }
+                },
+                "parameters": {},
+                "key": "id",
+                "resources": {
+                        "id":  "string*",
+                        "mac_address":  "string*",
+                        "status":  "string*",
+                        "attributes":  {
+                                        "Info":  "_:string*",
+                                        "Role":  "_:string*",
+                                        "Owner":  "_:string*",
+                                        "AD-Title":  "_:string*",
+                                        "Location":  "_:string*",
+                                        "Username":  "_:string*",
+                                        "User-Email":  "_:string*",
+                                        "User-Title":  "_:string*",
+                                        "Phone Number":  "_:string*",
+                                        "Guest Role ID":  "_:string*",
+                                        "AD-Description":  "_:string*",
+                                        "AD-EmployeeType":  "_:string*",
+                                        "MAC-Auth Expiry":  "_:string*"
+                                    },
+                        "_links":  {
+                                    "self":  {
+                                                    "href":  "_:string*"
+                                                }
+                                }
+                }
+            }
+        }
+    },
+    "rest": {
+        "config": {
+            "baseUrl": "https://{tenant_id}",
+            "get": {
+                "query_parameters": {
+                },
+                "pagination": {
+                    "mode": "skip_take",
+                    "path":[],
+                    "page_size":"{page_size}",
+                    "params":{
+                        "limit":"{take_count}",
+                        "offset":"{skip_count}"
+                    }
+                }
+            },
+            "authentication": "custom_post_token",
+            "call_handling": "generic",
+            "test_connection": {
+                "url": "/api/endpoint?offset=0&limit=1&calculate_count=true"
+            }
+        },
+        "authOptions": {
+            "authUrl": "https://{tenant_id}/api/oauth",
+            "postData": {
+                "grant_type": "password",
+                "username": "{user_name}",
+                "password": "{password}",
+                "client_id": "apiclient"
+            },
+            "directToken": true,
+            "tokenPath": "access_token",
+            "headerName": "Authorization",
+            "headerTemplate": "Bearer {token}"
+        }
+    },
+    "connection": {
+        "items": [
+            {
+                "name": "tenant_id",
+                "type": "textbox",
+                "label": "Tenent URL:",
+                "value": ""
+            },
+            {
+                "name": "page_size",
+                "type": "textbox",
+                "label": "Page Size:",
+                "value": "1000"
+            }
+        ]
+    }
+}

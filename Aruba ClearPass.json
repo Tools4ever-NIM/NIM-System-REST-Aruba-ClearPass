@@ -93,7 +93,30 @@
             "tokenPath": "access_token",
             "headerName": "Authorization",
             "headerTemplate": "Bearer {token}"
-        }
+        },
+        "retry": [
+            {
+                "type": "statusCode",
+                "statusCode": 429,
+                "retry": {
+                    "type": "simple",
+                    "maxCount": 12,
+                    "waitTime": 5
+                }
+            },
+            {
+                "type": "statusCode",
+                "statusCode": 403,
+                "retry": {
+                    "type": "simple",
+                    "maxCount": 12,
+                    "waitTime": 5
+                }
+            },
+            {
+                "type": "connectionError"
+            }
+        ]
     },
     "connection": {
         "items": [

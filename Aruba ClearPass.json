@@ -7,7 +7,7 @@
                     "EndpointsList": {
                         "method": "get",
                         "call": {
-                            "path": "/api/endpoint?offset=0&limit=1000&calculate_count=true"
+                            "path": "/api/endpoint"
                         },
                         "processing_options": {
                             "output_field": "_embedded.items"
